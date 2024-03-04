@@ -11,9 +11,9 @@ services:
 
   backend:
     image: akbackup/quirknotes_backend:latest
-    # build:
-    #   context: .
-    #   dockerfile: Dockerfile_backend
+    build:
+      context: .
+      dockerfile: Dockerfile_backend
     ports:
     - "4000:4000"
     environment:
