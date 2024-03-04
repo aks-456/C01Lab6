@@ -1,27 +1,28 @@
 services:
-  frontend:
-    image: akbackup/quirknotes_frontend:latest
-    build:
-      context: .
-      dockerfile: Dockerfile_frontend
-    ports:
-    - "3000:80"
-    environment:
-    - ENV=Docker
-
   backend:
     image: akbackup/quirknotes_backend:latest
     build:
       context: .
       dockerfile: Dockerfile_backend
+      target: backend
     ports:
-    - "4000:4000"
+      - "4000:4000"
     environment:
-    - ENV=Docker
+      - ENV=Docker
     depends_on:
-    - mongodb
+      - mongodb
+  frontend:
+    image: akbackup/quirknotes_frontend:latest
+    build:
+      context: .
+      dockerfile: Dockerfile_frontend
+      target: frontend
+    ports:
+      - "3000:80"
+    environment:
+      - ENV=Docker
 
   mongodb:
     image: mongo:latest
     ports:
-    - "27017:27017"
+      - "27017:27017"
